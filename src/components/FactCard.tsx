@@ -5,9 +5,10 @@ import { StyleSheet, Text, View, Modal, Pressable } from 'react-native';
 import storageService from '../services/storageService';
 import miscService from '../services/miscServices'
 
+import { SavedFact } from '../models/Fact';
+import { saveFact } from '../database/factDao';
+
 const FactCard=()=>{
-
-
 
     const[factState,setFactState] = useState<FactState>({
         status:"Idle"
@@ -187,9 +188,15 @@ const FactCard=()=>{
                         {/* Save button */}
                         <Pressable
                             style={styles.saveButton}
-                            onPress={() => {
-                                console.log("Save fact");
-                            }}
+                            onPress={() => { if (factState.status === "Success") {
+                                saveFact({
+                                    title: factState.data.title,
+                                    fact: factState.data.fact,
+                                    category: factState.data.category,
+                                    date: ""
+                                });
+        }
+    }}
                         >
                             <Text style={styles.saveIcon}>
                                 🔖

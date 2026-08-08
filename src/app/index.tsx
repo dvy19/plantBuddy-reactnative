@@ -2,7 +2,14 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 import { router } from 'expo-router';
 
+import { useEffect } from 'react';
+import { initializeDatabase } from '../database/migration';
 export default function GetStarted() {
+
+   useEffect(() => {
+        initializeDatabase();
+    }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
@@ -26,7 +33,7 @@ export default function GetStarted() {
         <TouchableOpacity
           style={styles.button}
           activeOpacity={0.8}
-          onPress={() => router.push('/(main)/home')}
+          onPress={() => router.push('/(main)/(tabs)/home')}
         >
           <Text style={styles.buttonText}>Get Started</Text>
         </TouchableOpacity>
