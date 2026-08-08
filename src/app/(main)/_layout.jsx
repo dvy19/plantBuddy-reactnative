@@ -21,13 +21,15 @@ export default function MainLayout() {
           title: "Saved Facts",
           drawerIcon: ({ color, size }) => (
             <Ionicons
-              name="bookmark-outline"
+              name="bookmark"
               size={size}
               color={color}
             />
           ),
         }}
       />
+
+      
 
 
 

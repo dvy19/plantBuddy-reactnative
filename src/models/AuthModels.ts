@@ -27,3 +27,20 @@ export interface LoginResponse {
     };
     role:string;
 }
+
+export interface UserdetailRequest{
+    name:string;
+    city:string;
+}
+
+export interface UserdetailResponse{
+    message:string;
+    data:UserData
+}
+
+export interface UserData{
+    id:number;
+    name:string;
+    city:string;
+    user:number
+}

@@ -12,18 +12,15 @@ import {
     Alert,
 } from 'react-native';
 
-import { tokenStorage } from '../../services/tokenStorage';
 
 import authService from '../../services/authService';
 
-import { RegisterRequest } from '../../models/AuthModels';
-import { router } from 'expo-router';
+import {  UserdetailRequest } from '../../models/AuthModels';
 
-const Register = () => {
+const UserDetails = () => {
 
-    const[mail,setMail]=useState("");
-    const[password,setPassword]=useState("");
-    const[role,setRole]=useState("user");
+    const[name,setName]=useState("");
+    const[city,setCity]=useState("");
 
     const[loading,setLoading]=useState(false);
     const[error,setError]=useState(false);
@@ -31,19 +28,19 @@ const Register = () => {
     const handleSubmit=async()=>{
         
 
-        if (!mail || !password) {
+        if (!name || !city) {
         Alert.alert('Error', 'Please fill in all fields');
         return;
         }
 
-        Alert.alert('form submitted', `Email: ${mail}, Password: ${password}`);
+        //Alert.alert('form submitted', `Email: ${name}, Password: ${city}`);
 
         setLoading(true);
 
         try{
-            const data: RegisterRequest = { email: mail, password: password, role: role }; 
+            const data: UserdetailRequest = { name:name, city:city}; 
             
-            const res = await authService.register(data);
+            const res = await authService.createProfile(data);
 
              /*
             Alert.alert(
@@ -57,13 +54,7 @@ const Register = () => {
                 ]
             );
         */
-          
-            await tokenStorage.saveTokens(
-              res.tokens.access,
-              res.tokens.refresh
-            )
-
-            router.replace('/(auth)/userDetails')
+        
           }
         catch(err){
             setLoading(false);
@@ -81,13 +72,13 @@ const Register = () => {
         style={styles.innerContainer}
       >
         <View style={styles.headerContainer}>
-          <Text style={styles.title}>Create Account</Text>
-          <Text style={styles.subtitle}>Sign up to get started</Text>
+          <Text style={styles.title}>Create Profile</Text>
+          <Text style={styles.subtitle}>Enter your details to get personalized features</Text>
         </View>
 
         <View style={styles.formContainer}>
           {/* Email Input */}
-          <Text style={styles.label}>Email Address</Text>
+          <Text style={styles.label}>Name</Text>
           <TextInput
             style={styles.input}
             placeholder="enter your email"
@@ -95,8 +86,8 @@ const Register = () => {
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}
-            value={mail}
-            onChangeText={setMail}
+            value={name}
+            onChangeText={setName}
           />
 
           {/* Password Input */}
@@ -106,22 +97,14 @@ const Register = () => {
             placeholder="enter your password"
             placeholderTextColor="#999"
             secureTextEntry
-            value={password}
-            onChangeText={setPassword}
+            value={city}
+            onChangeText={setCity}
           />
 
           {/* Submit Button */}
           <TouchableOpacity style={styles.submitButton} onPress={handleSubmit} disabled={loading}>
-            <Text style={styles.submitButtonText}>{loading ? 'Registering...' : 'Register'}</Text>
+            <Text style={styles.submitButtonText}>{loading ? 'Creating...' : 'Create Profile'}</Text>
           </TouchableOpacity>
-
-          {/* Login Navigation Row */}
-          <View style={styles.loginRow}>
-            <Text style={styles.loginText}>Already have an account? </Text>
-            <TouchableOpacity onPress={()=>{router.push('/(auth)/login')}}>
-              <Text style={styles.loginLink}>Log In</Text>
-            </TouchableOpacity>
-          </View>
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -206,4 +189,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Register;
+export default UserDetails;

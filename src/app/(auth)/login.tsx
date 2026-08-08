@@ -3,7 +3,7 @@
 import {LoginRequest} from '../../models/AuthModels';
 import authService from '../../services/authService';
 import { useState } from 'react';
-
+import { tokenStorage } from '../../services/tokenStorage';
 import { Ionicons } from "@expo/vector-icons";
 
 import {    View,
@@ -35,11 +35,21 @@ const Login=()=>{
         try{
             const data:LoginRequest = { email, password };
 
+            //console.log(email,password,data)
+
             const response=await authService.login(data);
 
             Alert.alert('Login Successful', `Welcome back, ${email}!`);
 
+            await tokenStorage.saveTokens(
+                response.tokens.access,
+                response.tokens.refresh
+
+            )
+
             // Handle successful login (e.g., navigate to the main app screen)
+
+            router.replace('/(main)/(tabs)/profile')
         } catch (err) {
             setError('Invalid email or password');
         } finally {
@@ -55,8 +65,8 @@ const Login=()=>{
             style={styles.innerContainer}
           >
             <View style={styles.headerContainer}>
-              <Text style={styles.title}>Create Account</Text>
-              <Text style={styles.subtitle}>Sign up to get started</Text>
+              <Text style={styles.title}>Login Here</Text>
+              <Text style={styles.subtitle}>Continue with your account..</Text>
             </View>
     
             <View style={styles.formContainer}>

@@ -1,4 +1,4 @@
-import {LoginRequest, LoginResponse, RegisterRequest, RegisterResponse} from "../models/AuthModels";
+import {LoginRequest, LoginResponse, RegisterRequest, RegisterResponse, UserdetailRequest, UserdetailResponse} from "../models/AuthModels";
 import {endpoints} from "../api/endpoints";
 import api from "../api/api";
 
@@ -22,7 +22,20 @@ const authService = {
         catch (error) {
             throw error;
         }
+    },
+
+    createProfile:async(data:UserdetailRequest) : Promise<UserdetailResponse>=>{
+
+        const res=await api.post(endpoints.USERDETAIL,data);
+        return res.data
+    },
+
+    getProfile:async():Promise<UserdetailResponse>=>{
+
+        const res=await api.get(endpoints.USERDETAIL);
+        return res.data
     }
+    
 };
 
 export default authService;

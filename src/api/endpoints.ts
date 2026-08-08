@@ -6,5 +6,7 @@ export const endpoints={
 
     WEATHER:"data/2.5/weather",
 
-    GETFACTOFTHEDAY:"plants/getFactOfDay/"
+    GETFACTOFTHEDAY:"plants/getFactOfDay/",
+
+    USERDETAIL:"accounts/create-profile/"
 }
