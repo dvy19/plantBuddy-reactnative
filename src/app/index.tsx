@@ -26,7 +26,7 @@ export default function GetStarted() {
         <TouchableOpacity
           style={styles.button}
           activeOpacity={0.8}
-          onPress={() => router.push('/register')}
+          onPress={() => router.push('/(main)/home')}
         >
           <Text style={styles.buttonText}>Get Started</Text>
         </TouchableOpacity>

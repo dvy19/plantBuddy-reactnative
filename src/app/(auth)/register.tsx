@@ -1,41 +1,72 @@
+
 import React, { useState } from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
   SafeAreaView,
-  KeyboardAvoidingView,
-  Platform,
-  Alert,
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    StyleSheet,
+    KeyboardAvoidingView,
+    Platform,
+    Alert,
 } from 'react-native';
 
-interface RegisterProps {
-  navigation?: any; // Replace with your navigation prop type (e.g., StackNavigationProp)
-}
+import authService from '../../services/authService';
 
-export const RegisterScreen: React.FC<RegisterProps> = ({ navigation }) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+import { RegisterRequest } from '../../models/AuthModels';
+import { router } from 'expo-router';
 
-  const handleRegister = () => {
-    if (!email || !password) {
-      Alert.alert('Error', 'Please fill in all fields');
-      return;
+const Register = () => {
+
+    const[mail,setMail]=useState("");
+    const[password,setPassword]=useState("");
+    const[role,setRole]=useState("user");
+
+    const[loading,setLoading]=useState(false);
+    const[error,setError]=useState(false);
+
+    const handleSubmit=async()=>{
+        
+
+        if (!mail || !password) {
+        Alert.alert('Error', 'Please fill in all fields');
+        return;
+        }
+
+        Alert.alert('form submitted', `Email: ${mail}, Password: ${password}`);
+
+        setLoading(true);
+
+        try{
+            const data: RegisterRequest = { email: mail, password: password, role: role }; 
+            
+            const res = await authService.register(data);
+
+             /*
+            Alert.alert(
+                "Success",
+                res.tokens.access,
+                [
+                    {
+                        text: "OK",
+                        onPress: () => router.replace("/login"),
+                    },
+                ]
+            );
+        */
+          
+          }
+        catch(err){
+            setLoading(false);
+            setError(true);
+            Alert.alert("Error Registering User")
+        }
+
     }
 
-    // Insert your registration API logic here
-    Alert.alert('Success', `Account created for ${email}`);
-  };
 
-  const handleNavigateToLogin = () => {
-    if (navigation) {
-      navigation.navigate('Login');
-    }
-  };
-
-  return (
+    return(
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -56,8 +87,8 @@ export const RegisterScreen: React.FC<RegisterProps> = ({ navigation }) => {
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}
-            value={email}
-            onChangeText={setEmail}
+            value={mail}
+            onChangeText={setMail}
           />
 
           {/* Password Input */}
@@ -72,14 +103,14 @@ export const RegisterScreen: React.FC<RegisterProps> = ({ navigation }) => {
           />
 
           {/* Submit Button */}
-          <TouchableOpacity style={styles.submitButton} onPress={handleRegister}>
-            <Text style={styles.submitButtonText}>Register</Text>
+          <TouchableOpacity style={styles.submitButton} onPress={handleSubmit} disabled={loading}>
+            <Text style={styles.submitButtonText}>{loading ? 'Registering...' : 'Register'}</Text>
           </TouchableOpacity>
 
           {/* Login Navigation Row */}
           <View style={styles.loginRow}>
             <Text style={styles.loginText}>Already have an account? </Text>
-            <TouchableOpacity onPress={handleNavigateToLogin}>
+            <TouchableOpacity onPress={()=>{router.push('/(auth)/login')}}>
               <Text style={styles.loginLink}>Log In</Text>
             </TouchableOpacity>
           </View>
@@ -167,4 +198,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterScreen;
+export default Register;
