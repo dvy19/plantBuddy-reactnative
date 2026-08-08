@@ -1,18 +1,19 @@
-import { ScrollView } from "react-native";
+import { ScrollView  , View , StyleSheet, SafeAreaView} from "react-native";
 import WeatherCard from '../../components/weatherCard'
+import FactCard from '../../components/FactCard'
 
-const Home=()=>{
+const Home = () => {
+ return (
+    <SafeAreaView>
+      <ScrollView >
+       
+            <WeatherCard />
+          
 
-   return(
-     <ScrollView>
-
-        <WeatherCard/>
-
-
-    
-    </ScrollView>
-   )
-
-}
-
+            <FactCard />
+         
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
 export default Home;

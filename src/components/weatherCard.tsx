@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { WeatherResponse } from '../models/weatherModels';
 import { WeatherState } from '../models/weatherModels';
 import WeatherService from '../services/WeatherService'
+import { ScrollView } from 'react-native';
 
 const weatherCard=()=>{
 
@@ -41,7 +42,15 @@ const weatherCard=()=>{
 return (
   <View style={styles.card}>
     {/* Loading State */}
-    {weatherState.status === 'loading' && (
+    
+    <ScrollView
+      contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false} // Hides scrollbar for cleaner look
+        nestedScrollEnabled={true}           // Important for Android inside another ScrollView
+    
+    >
+
+      {weatherState.status === 'loading' && (
       <View style={styles.card}>
         <Text >Loading weather...</Text>
       </View>
@@ -98,6 +107,9 @@ return (
         </View>
       </>
     )}
+
+
+    </ScrollView>
   </View>
 );
 }
@@ -108,6 +120,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1B4D3E', // Deep Forest Green
     borderRadius: 24,
     padding: 20,
+    height:200,
     marginHorizontal: 16,
     marginVertical: 12,
     // Soft shadow for depth
@@ -116,6 +129,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 12,
     elevation: 6,
+  },
+  scrollContent: {
+    flexGrow: 1,                 // Allows content to fill card height when small
+    paddingBottom: 8,            // Prevents bottom content clipping when scrolling
   },
   headerRow: {
     flexDirection: 'row',
@@ -132,16 +149,16 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   locationIcon: {
-    fontSize: 12,
+    fontSize: 8,
     marginRight: 4,
   },
   locationText: {
     color: '#E8F3E8',
-    fontSize: 13,
+    fontSize: 8,
     fontWeight: '600',
   },
   plantTipTag: {
-    fontSize: 11,
+    fontSize: 10,
     color: '#A2E0B8', // Sage highlight
     fontWeight: '600',
   },
