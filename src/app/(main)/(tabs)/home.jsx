@@ -13,14 +13,14 @@ const Home = () => {
   const router=useRouter();
  return (
     <SafeAreaView>
-      <ScrollView >
+      <ScrollView style={styles.home} >
        
             <WeatherCard />
           
 
             <FactCard />
 
-            <PlantHorizontalList></PlantHorizontalList>
+            <PlantHorizontalList style={styles.plantHoriList}></PlantHorizontalList>
 
             <View style={styles.categorySection} >
 
@@ -74,6 +74,13 @@ const Home = () => {
 
 const styles = StyleSheet.create({
 
+ 
+  home:{
+
+    paddingHorizontal:12,
+
+  },
+
   categorySection:{
 
     marginTop:5,
@@ -81,16 +88,15 @@ const styles = StyleSheet.create({
   },
 
   categoryHeading:{
-    left:12,
     fontSize:20,
-    fontWeight:500
+    fontWeight:500,
+    marginBottom:10,
 
   },
 
    grid: {
     flexDirection: "row",
     flexWrap: "wrap",
-    padding: 15,
     gap:10,
   },
   

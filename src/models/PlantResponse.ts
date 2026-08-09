@@ -55,6 +55,12 @@ export interface PlantAttribute{
 
 }
 
+export type PlantDetailUiState=
+    | { status: "idle" }
+  | { status: "loading" }
+  | { status: "success" }
+  | { status: "error"; message: string };
+
 export type PlantsUiState =
   | { status: "idle" }
   | { status: "loading" }

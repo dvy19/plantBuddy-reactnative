@@ -10,8 +10,11 @@ import {
   Dimensions
 } from 'react-native';
 
+import { useRouter } from 'expo-router';
 
 import {Plant} from '../models/PlantResponse'
+
+
 interface PlantCardProps {
   plant: Plant;
 }
@@ -19,6 +22,13 @@ interface PlantCardProps {
 const { width } = Dimensions.get("window");
 
 const PlantCard = ({ plant }: PlantCardProps) =>{
+
+   const router = useRouter();
+
+    const handlePress = () => {
+        router.push(`/plantDetail/${plant.id}`);
+    };
+
   const [imageLoading, setImageLoading] = useState<boolean>(true);
   const [imageError, setImageError] = useState<boolean>(false);
 
@@ -26,6 +36,7 @@ const PlantCard = ({ plant }: PlantCardProps) =>{
     <TouchableOpacity
       activeOpacity={0.9}
       style={styles.card}
+      onPress={handlePress}
     >
       <ScrollView
         contentContainerStyle={styles.scrollContent}
@@ -84,7 +95,7 @@ const styles = StyleSheet.create({
     height: 'auto', // Fixed height with scrollable content
     overflow: 'hidden', // Ensures scrolled content stays within rounded corners
     borderWidth: 1,
-    width:width*.7,
+    width:"100%",
     
     borderColor: '#E1EFE3',
     // Soft shadow for depth
@@ -92,7 +103,6 @@ const styles = StyleSheet.create({
     paddingBottom:4,
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.12,
-    left:12,
     shadowRadius: 10,
     elevation: 4, // Android elevation
   },

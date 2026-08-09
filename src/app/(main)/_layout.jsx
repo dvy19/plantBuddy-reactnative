@@ -25,9 +25,28 @@ export default function MainLayout() {
               size={size}
               color={color}
             />
+
+            
           ),
         }}
       />
+
+      <Drawer.Screen
+        name="PlantCatelogScreen"
+        options={{
+          title: "Plant Catelog",
+          drawerIcon: ({ color, size }) => (
+            <Ionicons
+              name="albums-outline"
+              size={size}
+              color={color}
+            />
+
+            
+          ),
+        }}
+      />
+
 
       
 

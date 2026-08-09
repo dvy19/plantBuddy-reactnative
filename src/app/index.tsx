@@ -3,12 +3,8 @@ import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, StatusBar } fro
 import { router } from 'expo-router';
 
 import { useEffect } from 'react';
-import { initializeDatabase } from '../database/migration';
 export default function GetStarted() {
 
-   useEffect(() => {
-        initializeDatabase();
-    }, []);
 
   return (
     <SafeAreaView style={styles.container}>

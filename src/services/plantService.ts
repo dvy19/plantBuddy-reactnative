@@ -1,4 +1,4 @@
-import { PlantPageResponse } from '../models/PlantResponse';
+import { PlantPageResponse,  SinglePlantResponse } from '../models/PlantResponse';
 import {endpoints} from "../api/endpoints";
 import api from "../api/api";
 
@@ -18,7 +18,16 @@ const plantService={
             })
 
             return res.data
-        }
+        },
+
+
+    getSinglePlant:async(id:number):Promise<SinglePlantResponse>=>{
+
+        const res=await api.get(`${endpoints.GET_SINGLE_PLANT(id)}`)
+
+        return res.data
+
+    }
 
 
     

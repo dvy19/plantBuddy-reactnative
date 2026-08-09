@@ -3,10 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Modal, Pressable } from 'react-native';
 
 import storageService from '../services/storageService';
-import miscService from '../services/miscServices'
-
-import { SavedFact } from '../models/Fact';
-import { saveFact } from '../database/factDao';
+import miscService from '../services/miscServices';
 
 const FactCard=()=>{
 
@@ -189,12 +186,7 @@ const FactCard=()=>{
                         <Pressable
                             style={styles.saveButton}
                             onPress={() => { if (factState.status === "Success") {
-                                saveFact({
-                                    title: factState.data.title,
-                                    fact: factState.data.fact,
-                                    category: factState.data.category,
-                                    date: ""
-                                });
+                               
         }
     }}
                         >
@@ -306,13 +298,14 @@ saveText: {
     fontSize: 16,
     fontWeight: "600",
 },
+
+
   card: {
     backgroundColor: '#F3F8F4', // Light sage container
     borderWidth: 1,
     borderColor: '#D2E7D6',
     borderRadius: 20,
     padding: 20,
-    marginHorizontal: 16,
     marginVertical: 10,
     // Subtle shadow
     shadowColor: '#2E7D32',

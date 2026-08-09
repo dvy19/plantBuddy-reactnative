@@ -121,7 +121,6 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     padding: 20,
     height:200,
-    marginHorizontal: 16,
     marginVertical: 12,
     // Soft shadow for depth
     shadowColor: '#1B4D3E',

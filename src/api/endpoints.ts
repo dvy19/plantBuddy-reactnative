@@ -11,4 +11,6 @@ export const endpoints={
     USERDETAIL:"accounts/create-profile/",
 
     GET_ALL_PLANTS: "plants/allPlants/",
+
+    GET_SINGLE_PLANT: (id : number)=> `plants/singlePlants/${id}/`
 }
