@@ -33,10 +33,10 @@ const profile = () => {
  return (
     <View>
         {isLoggedIn === false && 
-         <Button
-                    title="Register"
-                    onPress={() => router.push("/(auth)/register")}
-          />
+        
+        <View>
+          
+        </View>
           }
 
            {isLoggedIn === true && 

@@ -66,3 +66,11 @@ export type PlantsUiState =
   | { status: "loading" }
   | { status: "success" }
   | { status: "error"; message: string };
+
+export interface SavedPlant {
+    id: number;
+    name: string;
+    type: string;
+    water_requirement: string;
+    image_url: string;
+};

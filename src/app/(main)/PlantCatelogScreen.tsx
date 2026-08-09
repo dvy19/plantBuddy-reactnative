@@ -6,7 +6,7 @@ import {useState, useEffect } from 'react'
 import { PlantsUiState } from '../../models/PlantResponse'
 import {Plant} from '../../models/PlantResponse'
 import PlantCard from '../../components/PlantCard'
-
+import CatalogCard from '../../components/CatalogCard'
 import plantService from '../../services/plantService'
 import {
   TextInput,
@@ -113,7 +113,7 @@ const handleViewMore = () => {
 
       renderItem={({ item }) => (
         <View style={styles.cardWrapper}>
-          <PlantCard plant={item} />
+          <CatalogCard plant={item} />
         </View>
       )}
 

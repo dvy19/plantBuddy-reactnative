@@ -249,7 +249,19 @@ useEffect(() => {
               />
             </View>
           </View>
+
+          
         </View>
+
+       <View style={styles.faqContainer}>
+      <View style={styles.faqQuestionBlock}>
+        <Text style={styles.faqQuestion}>Give me 5 Facts about this plant.</Text>
+      </View>
+
+      <View style={styles.faqQuestionBlock}>
+        <Text style={styles.faqQuestion}>How to take care of this plant ?</Text>
+      </View>
+    </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -277,6 +289,40 @@ function InfoRow({
 }
 
 const styles = StyleSheet.create({
+
+  faqContainer: {
+    paddingHorizontal: 20,
+    marginTop: 16,
+    marginBottom: 24,
+  },
+
+  faqQuestionBlock: {
+    backgroundColor: "#FFFFFF",
+    paddingVertical: 16,
+    paddingHorizontal: 18,
+    borderRadius: 14,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: "#E8F5E9",
+
+    // Android elevation & iOS soft shadow
+    elevation: 2,
+    shadowColor: "#1B5E20",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+  },
+
+  faqQuestion: {
+    fontSize: 15,
+    fontWeight: "600",
+    color: "#1B5E20",
+    lineHeight: 22,
+  },
+
   safeArea: {
     flex: 1,
     backgroundColor: "#F8FAFC",

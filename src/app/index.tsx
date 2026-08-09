@@ -1,9 +1,18 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 import { router } from 'expo-router';
-
 import { useEffect } from 'react';
+import { initDatabase } from '../database/database';
 export default function GetStarted() {
+
+  useEffect(() => {
+        try {
+            initDatabase();
+            console.log("SQLite database initialized");
+        } catch (error) {
+            console.error("SQLite initialization error:", error);
+        }
+    }, []);
 
 
   return (
@@ -36,8 +45,7 @@ export default function GetStarted() {
       </View>
     </SafeAreaView>
   );
-}
-
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
