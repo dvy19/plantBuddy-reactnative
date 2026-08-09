@@ -29,8 +29,15 @@ const authService = {
     },
 
     createProfile:async(data:UserdetailRequest) : Promise<UserdetailResponse>=>{
+        const token = await tokenStorage.getAccessToken();
 
-        const res=await api.post(endpoints.USERDETAIL,data);
+        const res=await api.post(endpoints.USERDETAIL,data,
+            { 
+                    headers:{ Authorization: `Bearer ${token}`,
+                               "Content-Type": "application/json", 
+                            },
+            }
+        );
         return res.data
     },
 
@@ -38,10 +45,15 @@ const authService = {
 
         const token = await tokenStorage.getAccessToken();
 
+        console.log("USERDETAIL:", endpoints.USERDETAIL);
+        console.log("TOKEN:", token);
+        console.log("BASE URL:", api.defaults.baseURL);
+
         const res=await api.get(endpoints.USERDETAIL ,
             { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", }, }
         );
         return res.data
+       
     }
     
 };

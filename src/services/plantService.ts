@@ -1,6 +1,7 @@
 import { PlantPageResponse,  SinglePlantResponse } from '../models/PlantResponse';
 import {endpoints} from "../api/endpoints";
 import api from "../api/api";
+import { FaqRequest  , FaqResponse} from '../models/MiscModels';
 
 const plantService={
 
@@ -27,6 +28,13 @@ const plantService={
 
         return res.data
 
+    },
+
+    getFaq:async(request:FaqRequest):Promise<FaqResponse>=>{
+
+        const res=await api.post(endpoints.GET_FAQ,request)
+
+        return res.data
     }
 
 

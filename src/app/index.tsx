@@ -40,7 +40,16 @@ export default function GetStarted() {
           activeOpacity={0.8}
           onPress={() => router.push('/(main)/(tabs)/home')}
         >
-          <Text style={styles.buttonText}>Get Started</Text>
+          <Text style={styles.buttonText}>Start as a User</Text>
+        </TouchableOpacity>
+
+         {/* Action Button */}
+        <TouchableOpacity
+          style={styles.button}
+          activeOpacity={0.4}
+          onPress={() => router.push('/ngoregister')}
+        >
+          <Text style={styles.buttonText}>Continue as NGO</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

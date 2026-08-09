@@ -17,6 +17,7 @@ import {
 import {
   ActivityIndicator,
 } from "react-native";
+import { isPlantSaved } from '@/database/plantRepo'
 
 const PlantCatelogScreen = () => {
 
@@ -29,48 +30,52 @@ const PlantCatelogScreen = () => {
     const [search, setSearch] = useState("");
 
 
+
    const [uiState, setUiState] = useState<PlantsUiState>({
         status: "idle",
     });
 
    const loadPlants = async (
-  pageNumber: number,
-  searchQuery: string = search
-) => {
+      pageNumber: number,
+      searchQuery: string = search
+    ) => {
 
-  if (loading) return;
+      if (loading) return;
 
-  try {
-    setLoading(true);
+      try {
+        setLoading(true);
 
-    const res = await plantService.getAllPlants(
-      pageNumber,
-      searchQuery
-    );
+        const res = await plantService.getAllPlants(
+          pageNumber,
+          searchQuery
+        );
 
-    const newPlants = res.results.data;
+        const newPlants = res.results.data;
 
-    if (pageNumber === 1) {
-      // First page / new search
-      setPlants(newPlants);
-    } else {
-      // Next page
-      setPlants((prev) => [
-        ...prev,
-        ...newPlants,
-      ]);
-    }
+        if (pageNumber === 1) {
+          // First page / new search
+          setPlants(newPlants);
+        } else {
+          // Next page
+          setPlants((prev) => [
+            ...prev,
+            ...newPlants,
+          ]);
+        }
+
+
 
     setHasNextPage(res.next !== null);
     setPage(pageNumber);
 
-  } catch (error) {
-    console.log("Error loading plants:", error);
+      } catch (error) {
+        console.log("Error loading plants:", error);
 
-  } finally {
-    setLoading(false);
-  }
-};
+      } finally {
+        setLoading(false);
+      }
+    };
+
     
         useEffect(() => {
         loadPlants(1);

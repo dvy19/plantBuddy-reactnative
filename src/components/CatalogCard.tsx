@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState  , useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -22,6 +22,8 @@ interface PlantCardProps {
   plant: Plant;
 }
 
+import { isPlantSaved } from '../database/plantRepo';
+
 const { width } = Dimensions.get("window");
 
 const CatalogCard = ({ plant }: PlantCardProps) =>{
@@ -32,6 +34,19 @@ const CatalogCard = ({ plant }: PlantCardProps) =>{
         router.push(`/plantDetail/${plant.id}`);
     };
 
+       const [isSaved, setIsSaved] = useState(false);
+
+        const checkSaved = async (id: number) => {
+          const saved = await isPlantSaved(id);
+          setIsSaved(saved);
+        };
+
+
+      useEffect(() => {
+        if (plant.id) {
+          checkSaved(Number(plant.id));
+        }
+      }, [plant.id]);
 
 
     const  handleSave=async()=>{
@@ -46,6 +61,8 @@ const CatalogCard = ({ plant }: PlantCardProps) =>{
 
         console.log("saved ")
         Alert.alert("added as your personal plant")
+
+        setIsSaved(true)
       }
       catch(err){
         console.log(`failed ${err}`)
@@ -94,11 +111,14 @@ const CatalogCard = ({ plant }: PlantCardProps) =>{
 
             <Pressable
                 style={styles.typeBadge}
-                onPress={handleSave}
-            >
+                onPress={handleSave}disabled={isSaved}
+              >
+                
                 <Text style={styles.typeBadgeText}>
-                    Add
+                  {isSaved ? "Added" : "Add"}
                 </Text>
+                
+
             </Pressable>
 
         </View>

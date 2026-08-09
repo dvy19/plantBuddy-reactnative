@@ -12,6 +12,8 @@ import {
     Alert,
 } from 'react-native';
 
+import {router} from 'expo-router'
+
 
 import authService from '../../services/authService';
 
@@ -54,6 +56,12 @@ const UserDetails = () => {
                 ]
             );
         */
+
+            setLoading(false)
+
+            Alert.alert("success")
+
+            router.push('/(main)/(tabs)/profile')
         
           }
         catch(err){
@@ -91,7 +99,7 @@ const UserDetails = () => {
           />
 
           {/* Password Input */}
-          <Text style={styles.label}>Password</Text>
+          <Text style={styles.label}>City</Text>
           <TextInput
             style={styles.input}
             placeholder="enter your password"

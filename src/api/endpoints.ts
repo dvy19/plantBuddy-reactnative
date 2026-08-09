@@ -12,5 +12,9 @@ export const endpoints={
 
     GET_ALL_PLANTS: "plants/allPlants/",
 
-    GET_SINGLE_PLANT: (id : number)=> `plants/singlePlants/${id}/`
+    GET_SINGLE_PLANT: (id : number)=> `plants/singlePlants/${id}/`,
+
+    GET_FAQ:"plants/plant-faq/",
+
+    CREATE_NGO:"ngo/create/"
 }
