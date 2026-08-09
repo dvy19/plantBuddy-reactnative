@@ -8,5 +8,7 @@ export const endpoints={
 
     GETFACTOFTHEDAY:"plants/getFactOfDay/",
 
-    USERDETAIL:"accounts/create-profile/"
+    USERDETAIL:"accounts/create-profile/",
+
+    GET_ALL_PLANTS: "plants/allPlants/",
 }

@@ -1,8 +1,12 @@
-import { ScrollView  , View , StyleSheet, SafeAreaView , Pressable} from "react-native";
+import { ScrollView  , View , StyleSheet, SafeAreaView , Pressable , Text} from "react-native";
 import WeatherCard from '../../../components/weatherCard'
 import FactCard from '../../../components/FactCard'
 import {useRouter} from 'expo-router'
 import { Ionicons } from "@expo/vector-icons";
+
+import PlantHorizontalList from '../../../components/PlantHorizontalList'
+
+import CategoryCard from '../../../components/CategoryCard'
 
 const Home = () => {
 
@@ -15,7 +19,45 @@ const Home = () => {
           
 
             <FactCard />
+
+            <PlantHorizontalList></PlantHorizontalList>
+
+            <View style={styles.categorySection} >
+
+              <View >
+                <Text style={styles.categoryHeading}>Explore Your Finds</Text>
+              </View>
+
+
+              <View style={styles.grid}>
+
+                <CategoryCard
+                  title="Home"
+                  icon="home-outline"
+                  onPress={() => router.push("/plants/home")}
+                />
+
+                <CategoryCard
+                  title="Outside"
+                  icon="sunny-outline"
+                  onPress={() => router.push("/plants/outside")}
+                />
+
+                <CategoryCard
+                  title="Kitchen"
+                  icon="restaurant-outline"
+                  onPress={() => router.push("/plants/kitchen")}
+                />
+
+                <CategoryCard
+                  title="Garden"
+                  icon="leaf-outline"
+                  onPress={() => router.push("/plants/garden")}
+                />
+
+              </View>
          
+            </View>
       </ScrollView>
 
        <Pressable
@@ -31,6 +73,26 @@ const Home = () => {
 
 
 const styles = StyleSheet.create({
+
+  categorySection:{
+
+    marginTop:5,
+    marginBottom:100
+  },
+
+  categoryHeading:{
+    left:12,
+    fontSize:20,
+    fontWeight:500
+
+  },
+
+   grid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    padding: 15,
+    gap:10,
+  },
   
 
   floatingButton: {
