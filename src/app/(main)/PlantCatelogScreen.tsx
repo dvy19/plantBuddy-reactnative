@@ -17,7 +17,7 @@ import {
 import {
   ActivityIndicator,
 } from "react-native";
-import { isPlantSaved } from '@/database/plantRepo'
+import { isPlantSaved } from '../../database/plantRepo'
 
 const PlantCatelogScreen = () => {
 

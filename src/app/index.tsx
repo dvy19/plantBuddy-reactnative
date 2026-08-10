@@ -6,6 +6,7 @@ import { initDatabase } from '../database/database';
 export default function GetStarted() {
 
   useEffect(() => {
+    
         try {
             initDatabase();
             console.log("SQLite database initialized");

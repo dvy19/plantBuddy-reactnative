@@ -5,6 +5,15 @@ export interface FactResponse{
     category:string
 }
 
+export interface SaveFact{
+    id:number,
+    title:string,
+    fact:string,
+    category:string,
+    date:string,
+    saved_at:string
+}
+
 export type FactState=  | {status :"Idle"}
     | {status :"Loading" }
     | {status : "Success" , data:FactResponse}

@@ -13,5 +13,18 @@ export function initDatabase() {
             water_requirement TEXT NOT NULL,
             image_url TEXT
         );
+
+        DROP TABLE IF EXISTS saved_facts;
+
+        CREATE TABLE saved_facts (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            date TEXT NOT NULL,
+            title TEXT NOT NULL,
+            fact TEXT NOT NULL,
+            category TEXT,
+            saved_at TEXT NOT NULL
+        );
     `);
+
+    
 }

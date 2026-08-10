@@ -5,6 +5,8 @@ import { StyleSheet, Text, View, Modal, Pressable } from 'react-native';
 import storageService from '../services/storageService';
 import miscService from '../services/miscServices';
 
+import { saveFact , isFactSaved} from '../database/factRepo'
+
 const FactCard=()=>{
 
     const[factState,setFactState] = useState<FactState>({
@@ -13,10 +15,6 @@ const FactCard=()=>{
 
     const[showDetails,setShowDetails]=useState(false);
 
-    const clearFact = async () => {
-    await storageService.removeFact();
-    console.log("Fact removed");
-};
 
     const getFact=async()=>{
 
@@ -71,8 +69,45 @@ const FactCard=()=>{
                         message:`${err}`
                     })
                 }
-            }
+            };
 
+    const[isSaved,setIsSaved]=useState(false);
+
+    
+
+    const saveOffline=async()=>{
+
+        if(factState.status!="Success" ){
+            return
+        }
+
+        try{
+            const fact=factState.data
+
+            const today = new Date().toISOString().split("T")[0];
+
+
+        saveFact(
+            fact.title,
+            fact.fact,
+            fact.category ?? "",
+            today            
+        );
+
+
+        setIsSaved(true)
+
+        console.log(isSaved)
+
+        console.log("Fact saved offline");
+        }
+        catch(err){
+            console.log(`${err}`)
+        }
+        
+    }
+
+    
     
     useEffect(() => {
         getFact();
@@ -185,18 +220,26 @@ const FactCard=()=>{
                         {/* Save button */}
                         <Pressable
                             style={styles.saveButton}
-                            onPress={() => { if (factState.status === "Success") {
-                               
-        }
-    }}
+                            onPress={saveOffline}
+                            //disabled={!isSaved}
                         >
                             <Text style={styles.saveIcon}>
-                                🔖
+                                {isSaved}
                             </Text>
 
-                            <Text style={styles.saveText}>
+                           {isSaved && (
+                             <Text style={styles.saveText}>
+                                Saved Offline
+                            </Text>
+                           )}
+
+                           {!isSaved && (
+                             <Text style={styles.saveText}>
                                 Save Fact
                             </Text>
+                           )}
+
+
                         </Pressable>
 
                     </View>
