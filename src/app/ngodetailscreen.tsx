@@ -5,7 +5,9 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  KeyboardAvoidingView,
   StyleSheet,
+  Platform,
   ScrollView,
   Alert,
 } from "react-native";
@@ -81,7 +83,7 @@ export default function NgoDetailsScreen() {
       }
     )
 
-    router.push('/ngo/ngoHome')
+    router.push('/ngo/(tabs)/ngoHome')
     }
     catch(err:any){
         console.log("ERROR:", err.response?.data || err.message);
@@ -92,6 +94,10 @@ export default function NgoDetailsScreen() {
   };
 
   return (
+
+    <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          >
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>NGO Details</Text>
 
@@ -157,6 +163,7 @@ export default function NgoDetailsScreen() {
         <Text style={styles.buttonText}>Save Details</Text>
       </TouchableOpacity>
     </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 

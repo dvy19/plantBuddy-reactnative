@@ -47,10 +47,6 @@ const savedFacts = () => {
  return (
         <View style={styles.container}>
 
-            <Text style={styles.title}>
-                My Plants
-            </Text>
-
             {facts.length === 0 ? (
                 <View style={styles.center}>
                     <Text style={styles.emptyText}>
@@ -63,18 +59,6 @@ const savedFacts = () => {
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
                         <View style={styles.card}>
-
-                            <View>
-                               
-                             <Pressable
-                                onPress={()=>handleDelete(item.id)}
-                             >
-                                <Text style={styles.deletePlant}>
-                                    Delete
-                                </Text>
-                             </Pressable>
-                            </View>
-
                             <View style={styles.info}>
 
                                 <Text style={styles.name}>
@@ -84,12 +68,20 @@ const savedFacts = () => {
                                
 
                                 <Text style={styles.type}>
-                                    Type: {item.fact}
+                                    Category: {item.fact}
                                 </Text>
 
                                 <Text style={styles.water}>
-                                    Water: {item.category}
+                                    Saved at: {item.category}
                                 </Text>
+
+                                <Pressable
+                                onPress={()=>handleDelete(item.id)}
+                             >
+                                <Text style={styles.deletePlant}>
+                                    Delete
+                                </Text>
+                             </Pressable>
 
                             </View>
 
@@ -108,9 +100,10 @@ const styles = StyleSheet.create({
    
 
     deletePlant:{
-        position:"absolute",
-        left:-5,
-        top:-4,
+        left:0,
+        alignSelf:"flex-end",
+        width:"40%",
+        top:0,
         borderRadius:10,
         padding:8,
         color:"white",

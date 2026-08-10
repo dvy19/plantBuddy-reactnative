@@ -37,6 +37,55 @@ export interface NgoDetailsForm {
   } | null;
 }
 
+
+
+export interface  AllCampaignResponse {
+     message: string,
+     data: Campaign[]
+}
+
+export interface SingleCampaignResponse{
+     message: string,
+     data: Campaign
+}
+
+export interface CampaignForm{
+    title:string,
+    description:string,
+    location:string,
+    required_volunteers: number | string,
+    start_date: string,
+    end_date: string,
+    goal_amount: string,
+    is_active: Boolean,
+
+    logo?: {
+    uri: string;
+    name: string;
+    type: string;
+    } | null;
+}
+
+export interface Campaign{
+     id: number,
+     title: String,
+     description: String,
+     location: String,
+     current_volunteers: number,
+     required_volunteers: number,
+     logo: string | null,
+     goal_amount: string,
+     current_amount: string,
+     start_date: string,
+     end_date: string,
+     is_active: Boolean,
+     created_at: string,
+     updated_at: string,
+     ngo: number
+}
+
+
+
 /*
 
 data class NgoDetailsResponse(

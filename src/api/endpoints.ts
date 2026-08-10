@@ -16,5 +16,6 @@ export const endpoints={
 
     GET_FAQ:"plants/plant-faq/",
 
-    CREATE_NGO:"ngo/create/"
+    CREATE_NGO:"ngo/create/",
+    CREATE_CAMPAIGN:"ngo/campaigns/"
 }

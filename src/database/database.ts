@@ -14,7 +14,6 @@ export function initDatabase() {
             image_url TEXT
         );
 
-        DROP TABLE IF EXISTS saved_facts;
 
         CREATE TABLE saved_facts (
             id INTEGER PRIMARY KEY AUTOINCREMENT,

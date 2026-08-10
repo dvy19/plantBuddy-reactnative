@@ -15,6 +15,20 @@ export default function MainLayout() {
         drawerInactiveTintColor: "#555",
       }}
     >
+
+
+      <Drawer.Screen
+      name="(tabs)"
+      options={{
+        title: "Home",
+        drawerItemStyle: {
+          display: "none",
+        },
+      }}
+    />
+
+    
+
       <Drawer.Screen
         name="savedFacts"
         options={{

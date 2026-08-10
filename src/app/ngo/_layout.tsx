@@ -1,12 +1,42 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { Drawer } from "expo-router/drawer";
+import { Ionicons } from "@expo/vector-icons";
 
-const _layout = () => {
+export default function MainLayout() {
   return (
-    <View>
-      <Text>_layout</Text>
-    </View>
-  )
-}
+    <Drawer
+      screenOptions={{
+        headerShown: true,
 
-export default _layout
+        drawerStyle: {
+          width: 280,
+        },
+
+        drawerActiveTintColor: "#2E7D32",
+        drawerInactiveTintColor: "#555",
+      }}
+    >
+
+
+      <Drawer.Screen
+      name="(tabs)"
+      options={{
+        title: "Home",
+        drawerItemStyle: {
+          display: "none",
+        },
+      }}
+    />
+
+    
+
+
+
+
+      
+
+
+
+      
+    </Drawer>
+  );
+}

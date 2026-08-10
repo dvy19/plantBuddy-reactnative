@@ -19,7 +19,11 @@ function PlantDetailScreen(){
 
     const [plant, setPlant] = useState<SinglePlantResponse | null>(null);
 
-    const { id } = useLocalSearchParams<{ id: string }>();
+    // id as an object
+    //const { id } = useLocalSearchParams<{ id: string }>();
+
+    const params=useLocalSearchParams()
+    const id=params.id
 
     const [uiState, setUiState] = useState<PlantDetailUiState>({
     status: "idle"

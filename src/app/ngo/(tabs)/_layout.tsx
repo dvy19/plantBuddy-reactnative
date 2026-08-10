@@ -1,12 +1,65 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { Tabs } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
-const _layout = () => {
+export default function TabsLayout() {
   return (
-    <View>
-      <Text>_layout</Text>
-    </View>
-  )
-}
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: "green",
+        tabBarInactiveTintColor: "gray",
 
-export default _layout
+        tabBarStyle: {
+          position: "absolute",
+
+          
+          margin:10,
+
+          height: 65,
+
+          borderRadius: 30,
+
+          backgroundColor: "white",
+
+          borderTopWidth: 1,
+
+          elevation: 3,
+          shadowColor: "#000",
+          shadowOpacity: 0.5,
+          shadowRadius: 10,
+          shadowOffset: {
+            width: 0,
+            height: 5,
+          },
+        },
+
+        tabBarLabelStyle: {
+          fontSize: 12,
+        },
+      
+      }}
+    >
+      <Tabs.Screen
+        name="ngoHome"
+        options={{
+          title: "Home",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home-outline" size={size} color={color} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="ngoProfile"
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person-outline" size={size} color={color} />
+          ),
+        }}
+      />
+
+
+    </Tabs>
+  );
+}

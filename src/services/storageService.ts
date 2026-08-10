@@ -1,7 +1,14 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+
+// defining the key for the async storage
+// value will be the fact object
+
+// fact_of_the_day : {...}
 const FACT_KEY = "fact_of_the_day";
 
+
+// an object
 const storageService = {
 
     saveFact: async (fact: object) => {
