@@ -102,6 +102,7 @@ const createCampaign = () => {
             })
 
             setLoading(false)
+            console.log("success")
         }
         catch(err){
           console.log(`${err}`)
