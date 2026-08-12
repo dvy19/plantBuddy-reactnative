@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, StatusBar } fro
 import { router } from 'expo-router';
 import { useEffect } from 'react';
 import { initDatabase } from '../database/database';
+import { tokenStorage } from '@/services/tokenStorage';
 export default function GetStarted() {
 
   useEffect(() => {
@@ -14,6 +15,35 @@ export default function GetStarted() {
             console.error("SQLite initialization error:", error);
         }
     }, []);
+
+
+    const checkLogin = async () => {
+        try {
+          const token = await tokenStorage.getAccessToken();
+          const role = await tokenStorage.getRole();
+
+          console.log(token)
+          console.log(role)
+
+
+          if (!token) { 
+            return 
+          } else if ( token !=null && role === "ngo") {
+            router.replace("/ngo/(tabs)/ngoHome")
+          } else if  ( token !=null && role === "user"){
+            router.replace("/(main)/(tabs)/home");
+          }
+        } catch (error) {
+          console.log("Login check error:", error);
+          router.replace("/login");
+        }
+};
+
+
+        useEffect(()=>{
+          checkLogin()
+        },[])
+    
 
 
   return (

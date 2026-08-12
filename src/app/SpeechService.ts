@@ -13,3 +13,4 @@ export const speakText = (text: string) => {
 export const stopSpeaking = () => {
   Speech.stop();
 };
+

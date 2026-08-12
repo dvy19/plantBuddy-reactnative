@@ -19,5 +19,7 @@ export const endpoints={
     CREATE_NGO:"ngo/create/",
     CREATE_CAMPAIGN:"ngo/campaigns/",
 
-    GET_CATEGORY:"plants/category-filter/"
+    GET_CATEGORY:"plants/category-filter/",
+
+    GET_OWN_CAMPAIGNS:"ngo/campaigns/my/"
 }

@@ -63,6 +63,8 @@ const Register = () => {
               res.tokens.refresh
             )
 
+            await tokenStorage.saveRole(role)
+
             router.replace('/(auth)/userDetails')
           }
         catch(err){

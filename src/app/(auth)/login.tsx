@@ -25,6 +25,7 @@ const Login=()=>{
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    //const[role,setrole]=useState("user")
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -46,6 +47,10 @@ const Login=()=>{
                 response.tokens.refresh
 
             )
+
+            await tokenStorage.saveRole(response.role)
+
+            
 
             // Handle successful login (e.g., navigate to the main app screen)
 

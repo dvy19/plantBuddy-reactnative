@@ -54,6 +54,7 @@ useEffect(() => {
 
 const handleLogout = async () => {
   await tokenStorage.clearTokens();
+  await tokenStorage.removeRole();
 
   setIsLoggedIn(false);
   setProfile(null);

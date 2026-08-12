@@ -49,6 +49,8 @@ export interface SingleCampaignResponse{
      data: Campaign
 }
 
+
+
 export interface CampaignForm{
     title:string,
     description:string,
@@ -83,6 +85,38 @@ export interface Campaign{
      updated_at: string,
      ngo: number
 }
+
+
+
+
+/*
+response to get own active campaign
+
+matches SingleCampaignResponse
+{
+    "message": "Campaigns retrieved successfully",
+    "data": [
+        {
+            "id": 5,
+            "title": "Faldaar",
+            "description": "Planting campaigns all over the kanpur and nearby",
+            "location": "Kanpur, shivrajpur, kanpur dehat",
+            "current_volunteers": 0,
+            "required_volunteers": 50,
+            "logo": null,
+            "goal_amount": "10000.00",
+            "current_amount": "0.00",
+            "start_date": "2005-12-12",
+            "end_date": "2005-12-23",
+            "is_active": true,
+            "created_at": "2026-08-12T10:01:53.867040Z",
+            "updated_at": "2026-08-12T10:01:53.867049Z",
+            "ngo": 20
+        }
+    ]
+}
+*/
+
 
 
 

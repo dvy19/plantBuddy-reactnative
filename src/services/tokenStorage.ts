@@ -13,6 +13,18 @@ export const tokenStorage = {
         return await SecureStore.getItemAsync(ACCESS_TOKEN);
     },
 
+    saveRole:async(role:string)=>{
+        await SecureStore.setItemAsync("role",role)
+    },
+
+    getRole:async()=>{
+        return await SecureStore.getItemAsync("role")
+    },
+
+    removeRole: async () => {
+        await SecureStore.deleteItemAsync("role");
+    },
+
     getRefreshToken: async () => {
         return await SecureStore.getItemAsync(REFRESH_TOKEN);
     },

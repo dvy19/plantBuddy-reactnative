@@ -113,7 +113,7 @@ const NgoRegisterScreen = () => {
            {/* Login Navigation Row */}
            <View style={styles.loginRow}>
              <Text style={styles.loginText}>Already have an account? </Text>
-             <TouchableOpacity onPress={()=>{router.push('/(auth)/login')}}>
+             <TouchableOpacity onPress={()=>{router.push('/ngologin')}}>
                <Text style={styles.loginLink}>Log In</Text>
              </TouchableOpacity>
            </View>

@@ -1,7 +1,7 @@
 import {endpoints} from "../api/endpoints";
 import api from "../api/api";
 import { tokenStorage } from "./tokenStorage";
-import { NgoDetailsForm , NgoDetailResponse, CampaignForm, SingleCampaignResponse } from "../models/Ngo";
+import { NgoDetailsForm , NgoDetailResponse, CampaignForm, AllCampaignResponse , SingleCampaignResponse} from "../models/Ngo";
 
 export const NgoService={
 
@@ -65,6 +65,7 @@ export const NgoService={
 
         const res=await api.post(endpoints.CREATE_CAMPAIGN, data ,
             { 
+                
                     headers:{ Authorization: `Bearer ${token}`,
                                "Content-Type": "multipart/form-data", 
                             },
@@ -72,6 +73,33 @@ export const NgoService={
         );
 
         return res.data
+    },
+
+
+    getOwnActiveCamp:async(is_active:boolean):Promise<AllCampaignResponse>=>{
+
+        const token=await tokenStorage.getAccessToken()
+
+        console.log(`token on entry ${token}`)
+        console.log("AUTH:", `Bearer ${token}`);
+
+       try{
+         const res=await api.get(endpoints.GET_OWN_CAMPAIGNS,{
+            headers:{ Authorization: `Bearer ${token}`,
+                               "Content-Type": "application/json", 
+                            },
+            params:{
+                is_active:is_active
+            }
+        })
+
+        return res.data
+       }
+
+       catch(err){
+            console.log("STATUS:", err.response?.status);
+            console.log("ERROR:", err.response?.data);
+       }
     }
 
 }

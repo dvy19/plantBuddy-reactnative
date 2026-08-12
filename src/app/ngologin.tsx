@@ -10,7 +10,6 @@ import {
     Platform,
     Alert,
 } from 'react-native';
-import NgoDetailScreen from './NgoDetailScreen';
 
 import { tokenStorage } from '../services/tokenStorage';
 import {useState, useEffect} from 'react'
@@ -54,6 +53,9 @@ const NgoLoginScreen = () => {
                           res.tokens.access,
                           res.tokens.refresh
             )
+
+
+            await tokenStorage.saveRole(res.role)
 
             router.push('/ngo/ngoHome')
 
