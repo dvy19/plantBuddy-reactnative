@@ -31,28 +31,48 @@ const Home = () => {
 
               <View style={styles.grid}>
 
-                <CategoryCard
-                  title="Home"
+                              <CategoryCard
+                  title="Indoor"
                   icon="home-outline"
-                  onPress={() => router.push("/plants/home")}
+                  onPress={() =>
+                    router.push({
+                      pathname:"[category]",
+                      params: { category: "1" },
+                    })
+                  }
                 />
 
                 <CategoryCard
-                  title="Outside"
+                  title="Outdoor"
                   icon="sunny-outline"
-                  onPress={() => router.push("/plants/outside")}
+                  onPress={() =>
+                    router.push({
+                      pathname: "[category]",
+                      params: { category: "2" },
+                    })
+                  }
                 />
 
                 <CategoryCard
-                  title="Kitchen"
-                  icon="restaurant-outline"
-                  onPress={() => router.push("/plants/kitchen")}
+                  title="Medicinal"
+                  icon="medical-outline"
+                  onPress={() =>
+                    router.push({
+                      pathname: "[category]",
+                      params: { category: "3" },
+                    })
+                  }
                 />
 
                 <CategoryCard
-                  title="Garden"
+                  title="Edible"
                   icon="leaf-outline"
-                  onPress={() => router.push("/plants/garden")}
+                  onPress={() =>
+                    router.push({
+                      pathname: "[category]",
+                      params: { category: "7" },
+                    })
+                  }
                 />
 
               </View>

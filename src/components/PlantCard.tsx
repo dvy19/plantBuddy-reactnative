@@ -14,7 +14,7 @@ import { useRouter } from 'expo-router';
 
 import {Plant} from '../models/PlantResponse'
 
-
+import {speakText} from '../app/SpeechService'
 interface PlantCardProps {
   plant: Plant;
 }
@@ -67,6 +67,8 @@ const PlantCard = ({ plant }: PlantCardProps) =>{
               setImageError(true);
             }}
           />
+
+          
 
           {/* Plant Type Badge */}
           <View style={styles.typeBadge}>

@@ -35,6 +35,20 @@ const plantService={
         const res=await api.post(endpoints.GET_FAQ,request)
 
         return res.data
+    },
+
+
+    getCategoryPlants:async(categoryId:number)=>{
+
+        const data=await api.get(endpoints.GET_CATEGORY,
+            {
+                 params: {
+                            category: categoryId,
+                        },
+            }
+        )
+
+        return data.data
     }
 
 

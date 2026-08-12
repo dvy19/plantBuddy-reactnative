@@ -12,6 +12,8 @@ import {
   StatusBar,
   Platform,
 } from "react-native";
+
+import { speakText } from "../SpeechService";
 import { SinglePlantResponse } from "../../models/PlantResponse";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router";
@@ -99,6 +101,16 @@ useEffect(() => {
             </Text>
           </View>
 
+          <TouchableOpacity
+                        onPress={() =>
+                          speakText(
+                            `${plant?.data.name}`
+                          )
+                        }
+                      >
+            <Text>🔊 Listen</Text>
+          </TouchableOpacity>
+
           {/* Plant Name & Scientific Name */}
           <Text style={styles.plantName}>{plant?.data.name}</Text>
           <Text style={styles.scientificName}>{plant?.data.scientific_name}</Text>
@@ -173,6 +185,17 @@ useEffect(() => {
             </View>
           </View>
 
+
+          <TouchableOpacity
+            style={styles.speak}
+                        onPress={() =>
+                          speakText(
+                            `${plant?.data.description}`
+                          )
+                        }
+                      >
+              <Text style={styles.speak}>🔊</Text>
+          </TouchableOpacity>
           {/* Description Section */}
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>About</Text>
@@ -293,6 +316,13 @@ function InfoRow({
 }
 
 const styles = StyleSheet.create({
+
+  speak:{
+
+    borderRadius:10,
+    backgroundColor:"grey",
+    fontSize:12,
+  },
 
   faqContainer: {
     paddingHorizontal: 20,

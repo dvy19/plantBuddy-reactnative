@@ -17,5 +17,7 @@ export const endpoints={
     GET_FAQ:"plants/plant-faq/",
 
     CREATE_NGO:"ngo/create/",
-    CREATE_CAMPAIGN:"ngo/campaigns/"
+    CREATE_CAMPAIGN:"ngo/campaigns/",
+
+    GET_CATEGORY:"plants/category-filter/"
 }

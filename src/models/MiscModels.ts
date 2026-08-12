@@ -47,3 +47,11 @@ data class FaqData(
     var updated_at:String
 )
 */
+
+
+const categories = [
+  { id: 1, name: "Indoor Plants" },
+  { id: 2, name: "Outdoor Plants" },
+  { id: 3, name: "Medicinal Plants" },
+  { id: 7, name: "Edible Plants" },
+];
