@@ -83,7 +83,7 @@ export const NgoService={
         console.log(`token on entry ${token}`)
         console.log("AUTH:", `Bearer ${token}`);
 
-       try{
+       
          const res=await api.get(endpoints.GET_OWN_CAMPAIGNS,{
             headers:{ Authorization: `Bearer ${token}`,
                                "Content-Type": "application/json", 
@@ -94,12 +94,9 @@ export const NgoService={
         })
 
         return res.data
-       }
+       
 
-       catch(err){
-            console.log("STATUS:", err.response?.status);
-            console.log("ERROR:", err.response?.data);
-       }
+    
     }
 
 }

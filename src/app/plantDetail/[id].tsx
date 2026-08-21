@@ -11,15 +11,21 @@ import {
   SafeAreaView,
   StatusBar,
   Platform,
+  Pressable,
+  Modal
 } from "react-native";
 
 import { speakText } from "../SpeechService";
 import { SinglePlantResponse } from "../../models/PlantResponse";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router";
+import { FaqRequest, FaqResponse } from "@/models/MiscModels";
+
 function PlantDetailScreen(){
 
     const [plant, setPlant] = useState<SinglePlantResponse | null>(null);
+
+    const[faq,setFaq]=useState<FaqResponse>();
 
     // id as an object
     //const { id } = useLocalSearchParams<{ id: string }>();
@@ -27,41 +33,61 @@ function PlantDetailScreen(){
     const params=useLocalSearchParams()
     const id=params.id
 
+    const[showDetails,setShowDetails]=useState(false)
+
     const [uiState, setUiState] = useState<PlantDetailUiState>({
     status: "idle"
         });
 
-const loadDetails = async (id: number) => {
+      const loadDetails = async (id: number) => {
 
-    setUiState({ status: "loading" });
+          setUiState({ status: "loading" });
 
-    try {
+          try {
 
-        const res = await plantService.getSinglePlant(id);
+              const res = await plantService.getSinglePlant(id);
 
-        setPlant(res);
+              setPlant(res);
 
-        setUiState({
-            status: "success"
-        });
+              setUiState({
+                  status: "success"
+              });
 
-    } catch (err) {
+          } catch (err) {
 
-        setUiState({
-            status: "error",
-            message: `${err}`
-        });
+              setUiState({
+                  status: "error",
+                  message: `${err}`
+              });
+
+          }
+      };
+
+      useEffect(() => {
+          if (id) {
+              loadDetails(Number(id));
+          }
+      }, [id]);
+
+    const handleQuestionPress=async(plantId:number , questionId:number)=>{
+
+      const req:FaqRequest={question_id:questionId , plant_id:plantId}
+
+      setShowDetails(true)
+
+      
+      try{
+
+        const data=await plantService.getFaq(req)
+        
+        console.log(data)
+        setFaq(data)
+      }
+      catch(err){
+        console.log(`${err}`)
+      }
 
     }
-};
-
-useEffect(() => {
-
-    if (id) {
-        loadDetails(Number(id));
-    }
-
-}, [id]);
 
 
     return(
@@ -282,11 +308,81 @@ useEffect(() => {
 
        <View style={styles.faqContainer}>
       <View style={styles.faqQuestionBlock}>
-        <Text style={styles.faqQuestion}>Give me 5 Facts about this plant.</Text>
+              <Pressable
+          onPress={() => handleQuestionPress(plant?.data.id!,1)}
+              >
+          <Text style={styles.faqQuestion}>
+              Give me 5 Facts about this plant.
+          </Text>
+      </Pressable>
       </View>
 
+      <Modal
+            visible={showDetails}
+            transparent={true}
+            animationType="fade"
+            onRequestClose={() => setShowDetails(false)}
+                  >
+                      <View style={styles.modalOverlay}>
+      
+                          <View style={styles.modalContainer}>
+      
+                              {/* Header */}
+                              <View style={styles.modalHeader}>
+      
+                                  <Text style={styles.modalTitle}>
+                                      {faq?.data.quesiton_title}
+                                  </Text>
+      
+                                  <Pressable
+                                      onPress={() => setShowDetails(false)}
+                                  >
+                                      <Text style={styles.closeButton}>
+                                          ✕
+                                      </Text>
+                                  </Pressable>
+      
+                              </View>
+      
+                              {/* Category */}
+                              <Text style={styles.label}>
+                                  Category
+                              </Text>
+      
+                              <Text style={styles.category}>
+                                  {faq?.data.plant_name}
+                              </Text>
+      
+                              {/* Date */}
+                              <Text style={styles.label}>
+                                  Date
+                              </Text>
+      
+      
+                              {/* Fact */}
+                              <Text style={styles.label}>
+                                  Answer
+                              </Text>
+      
+                              <Text style={styles.description}>
+                                  {faq?.data.answer}
+                              </Text>
+      
+                        
+      
+                          </View>
+      
+                      </View>
+                  </Modal>
+
       <View style={styles.faqQuestionBlock}>
-        <Text style={styles.faqQuestion}>How to take care of this plant ?</Text>
+        <Pressable
+          onPress={() => handleQuestionPress(plant?.data.id!,2)}
+              >
+          <Text style={styles.faqQuestion}>
+              How to take care of this plant?
+          </Text>
+      </Pressable>
       </View>
     </View>
       </ScrollView>
@@ -316,6 +412,30 @@ function InfoRow({
 }
 
 const styles = StyleSheet.create({
+
+  
+description: {
+    fontSize: 16,
+    lineHeight: 24,
+},
+
+  
+label: {
+    fontSize: 13,
+    color: "gray",
+    marginTop: 12,
+    marginBottom: 4,
+},
+
+category: {
+    fontSize: 15,
+    fontWeight: "600",
+},
+
+date: {
+    fontSize: 14,
+    color: "gray",
+},
 
   speak:{
 
@@ -349,6 +469,39 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.06,
     shadowRadius: 4,
   },
+
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+},
+
+modalContainer: {
+    width: "90%",
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 20,
+},
+
+modalHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 20,
+},
+
+modalTitle: {
+    fontSize: 20,
+    fontWeight: "700",
+    flex: 1,
+},
+
+closeButton: {
+    fontSize: 22,
+    marginLeft: 10,
+},
+
 
   faqQuestion: {
     fontSize: 15,

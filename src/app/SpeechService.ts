@@ -5,8 +5,8 @@ export const speakText = (text: string) => {
 
   Speech.speak(text, {
     language: "hi-In",
-    pitch: 2,
-    rate: 0.6,
+    pitch: 1,
+    rate: 0.7,
   });
 };
 

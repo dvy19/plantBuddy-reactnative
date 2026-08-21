@@ -17,6 +17,7 @@ export default function GetStarted() {
     }, []);
 
 
+    /*
     const checkLogin = async () => {
         try {
           const token = await tokenStorage.getAccessToken();
@@ -43,6 +44,7 @@ export default function GetStarted() {
         useEffect(()=>{
           checkLogin()
         },[])
+        */
     
 
 

@@ -27,7 +27,8 @@ const CategoryScreen = () => {
 
             const response = await plantService.getCategoryPlants(category);
 
-            setPlants(response.data);
+            //console.log(response[0].category.name)
+            setPlants(response);
         } catch (err) {
             console.log(err);
         } finally {
@@ -71,6 +72,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 2,
     margin:12,
+    paddingTop:78
   },
 
   search: {
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
 
   cardWrapper: {
     width: "48%",
-  },
+  }
 });
 
 export default CategoryScreen
