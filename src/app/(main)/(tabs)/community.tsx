@@ -1,33 +1,31 @@
-import { NgoDetailsData } from "@/models/Ngo"
-import { useState  , useEffect} from "react"
 
-import { NgoService } from "../../../services/NgoService";
+import { ScrollView  , View , StyleSheet, SafeAreaView , Pressable , Text} from "react-native";
+
+import NgoHorizontalList from "../../../components/NgoHorizontalList";
 
 const community=()=>{
 
-    const[ngo,setNgo]=useState<NgoDetailsData[]>();
-    const[loading,setLoading]=useState(false);
-    const[error,setError]=useState("");
+    return(
+        <ScrollView style={styles.home} >
 
-    const loadNgos=async()=>{
+            <NgoHorizontalList></NgoHorizontalList>
 
-        setLoading(true)
+            </ScrollView>
+        
+    )
 
-        try{
-
-            const data=await NgoService.getAllNgo()
-
-            setNgo(data.data)
-            console.log(data.data)
-        }
-        catch(err){
-            console.log(`${err}`)
-        }
-    }
-
-    useEffect(()=>{
-        loadNgos
-    } , [])
+    
 
     
 }
+
+const styles = StyleSheet.create({
+
+ 
+  home:{
+
+    paddingHorizontal:12,
+
+  }
+}
+)

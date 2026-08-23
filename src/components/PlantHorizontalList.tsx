@@ -14,6 +14,7 @@ import {
 import PlantCard from "./PlantCard";
 
 const CARD_WIDTH = Dimensions.get('window').width * 0.72;
+
 import {PlantsUiState} from '../models/PlantResponse'
 const PlantHorizontalList=()=>{
 
