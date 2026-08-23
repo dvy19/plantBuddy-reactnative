@@ -1,7 +1,7 @@
 import {endpoints} from "../api/endpoints";
 import api from "../api/api";
 import { tokenStorage } from "./tokenStorage";
-import { NgoDetailsForm , NgoDetailResponse, CampaignForm, AllCampaignResponse , SingleCampaignResponse} from "../models/Ngo";
+import { NgoDetailsForm , NgoDetailResponse, CampaignForm, AllCampaignResponse , SingleCampaignResponse, AllNgoResponse} from "../models/Ngo";
 
 export const NgoService={
 
@@ -97,6 +97,22 @@ export const NgoService={
        
 
     
+    },
+
+    getAllNgo:async() : Promise<AllNgoResponse>=>{
+        
+
+        const token=await tokenStorage.getAccessToken()
+
+
+        const res=await api.get(endpoints.GET_ALL_NGO , {
+            headers:{ Authorization: `Bearer ${token}`,
+                            "Content-Type": "application/json", 
+                        },}
+            )
+
+        return res.data
+        
     }
 
 }

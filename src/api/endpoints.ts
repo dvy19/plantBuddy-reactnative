@@ -22,5 +22,6 @@ export const endpoints={
     GET_CATEGORY:"plants/category-filter/",
 
     GET_OWN_CAMPAIGNS:"ngo/campaigns/my/",
+    GET_ALL_NGO:"ngo/get/"
 
 }
