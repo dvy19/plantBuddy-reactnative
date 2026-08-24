@@ -113,6 +113,25 @@ export const NgoService={
 
         return res.data
         
+    },
+
+
+    getActiveCampaigns:async(is_active:boolean):Promise<AllCampaignResponse>=>{
+
+        const token=await tokenStorage.getAccessToken()
+
+        const res=await api.get(endpoints.GET_ACTIVE_CAMPAIGN, {
+
+            headers:{ Authorization: `Bearer ${token}`,
+                               "Content-Type": "application/json", 
+                            },
+            params:{
+                is_active:is_active
+            }
+
+        })
+
+        return res.data
     }
 
 }
