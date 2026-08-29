@@ -24,6 +24,8 @@ export const endpoints={
     GET_OWN_CAMPAIGNS:"ngo/campaigns/my/",
     GET_ALL_NGO:"ngo/get/",
 
-    GET_ACTIVE_CAMPAIGN:"ngo/campaigns/"
+    GET_ACTIVE_CAMPAIGN:"ngo/campaigns/",
+
+    CREATE_VOLUNTEER_PROFILE:"accounts/create-volunteer-profile/"
 
 }

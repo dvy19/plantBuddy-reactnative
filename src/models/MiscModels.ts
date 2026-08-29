@@ -55,3 +55,23 @@ const categories = [
   { id: 3, name: "Medicinal Plants" },
   { id: 7, name: "Edible Plants" },
 ];
+
+
+export interface VolunteerProfile{
+
+    name:string,
+    city:string,
+    gender:string,
+    phone:string,
+    image?: {
+    uri: string;
+    name: string;
+    type: string;
+  } | null;
+}
+
+export interface VolunteerResponse{
+    message:string,
+    data:VolunteerProfile
+
+}

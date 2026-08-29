@@ -3,7 +3,7 @@ import { Ionicons } from "@expo/vector-icons";import React, { useEffect, useStat
 import { tokenStorage } from '../../../services/tokenStorage';
 import {router} from 'expo-router'
 import authService from "../../../services/authService";
-import { UserdetailResponse } from "@/models/AuthModels";
+import { UserdetailResponse } from "../../../models/AuthModels";
 
 const profile = () => {
 const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -25,7 +25,7 @@ const checkLogin = async () => {
   try {
     const token = await tokenStorage.getAccessToken();
 
-    console.log("TOKEN EXISTS:", !!token);
+    //console.log("TOKEN EXISTS:", !!token);
 
     if (!token) {
       setIsLoggedIn(false);
@@ -33,11 +33,11 @@ const checkLogin = async () => {
       return;
     }
 
-    console.log("USER IS LOGGED IN");
+    //console.log("USER IS LOGGED IN");
 
     const userProfile = await authService.getProfile();
 
-    console.log("PROFILE RECEIVED:", userProfile);
+    //console.log("PROFILE RECEIVED:", userProfile);
 
     setProfile(userProfile);
     setIsLoggedIn(true);
@@ -158,6 +158,13 @@ const handleLogout = async () => {
             title="More Options"
             subtitle="Help center, feedback & about plant care"
             //onPress={onNavigateMore}
+          />
+          <View style={styles.divider} />
+          <MenuItem
+            icon="grid-outline"
+            title="Manage Volunteer Profile"
+            subtitle="Create Now to join the Community and NGOs"
+            onPress={()=>router.push('/volunteerprofile')}
           />
         </View>
 

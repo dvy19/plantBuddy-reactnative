@@ -41,64 +41,66 @@ const CampaignList = () => {
 
     useEffect(()=>{
         loadActiveCampaign(true)
-    }, [])
+    }, []);
 
 
   return (
 
-     <View style={styles.container}>
-
-            <Text style={styles.title}>
-                My Plants
-            </Text>
-
-            {campaign.length === 0 ? (
-                <View style={styles.center}>
-                    <Text style={styles.emptyText}>
-                        No saved plants yet 🌱
-                    </Text>
-                </View>
-            ) : (
-                <FlatList
-                    data={campaign}
-                    keyExtractor={(item) => item.id.toString()}
-                    renderItem={({ item }) => (
-                        <View style={styles.card}>
-
-                            <View>
-                                <Image
-                                source={{ uri: item.logo? }}
-                                style={styles.image}
-                            />
-
-                             
+    <View style={styles.container}>
+    
+                <Text style={styles.title}>
+                    My Plants
+                </Text>
+    
+                {campaign.length === 0 ? (
+                    <View style={styles.center}>
+                        <Text style={styles.emptyText}>
+                            No saved plants yet 🌱
+                        </Text>
+                    </View>
+                ) : (
+                    <FlatList
+                        data={campaign}
+                        keyExtractor={(item) => item.id.toString()}
+                        renderItem={({ item }) => (
+                            <View style={styles.card}>
+    
+                                <View>
+                                    <Image
+                                    source={{ uri: item.logo}}
+                                    style={styles.image}
+                                />
+    
+                                 
+                                </View>
+    
+                                <View style={styles.info}>
+    
+                                    <Text style={styles.name}>
+                                        {item.title}
+                                    </Text>
+    
+                                   
+    
+                                    <Text style={styles.type}>
+                                        Type: {item.location}
+                                    </Text>
+    
+                                    <Text style={styles.water}>
+                                        Water: {item.required_volunteers}
+                                    </Text>
+    
+                                </View>
+    
                             </View>
+                        )}
+                    />
+                )}
+    
+            </View>
 
-                            <View style={styles.info}>
-
-                                <Text style={styles.name}>
-                                    {item.title}
-                                </Text>
-
-                               
-
-                                <Text style={styles.type}>
-                                    Type: {item.location}
-                                </Text>
-
-                                <Text style={styles.water}>
-                                    Water: {item.required_volunteers}
-                                </Text>
-
-                            </View>
-
-                        </View>
-                    )}
-                />
-            )}
-
-        </View>
-    );
+       
+  )
 };
 
 
